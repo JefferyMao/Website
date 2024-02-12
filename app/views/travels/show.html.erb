@@ -1,0 +1,46 @@
+<h1>Japantravel</h1>
+<h3>Tweet詳細</h3>
+<div class="travel">
+  <p><%= @travel.body %></p>
+  <p><%= @travel.created_at %></p>
+  <% if user_signed_in? %>
+      <% if current_user.already_liked?(@travel) %>
+        <%= button_to travel_like_path(@travel), method: :delete do %>
+          <i class="fas fa-heart"></i><%= @travel.likes.count %>
+        <% end %>
+      <% else %>
+        <%= button_to travel_likes_path(@travel), method: :post do %>
+          <i class="far fa-heart"></i><%= @travel.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>いいねの数 = </p><%= @travel.likes.count %>
+    <% end %>
+  <%= link_to "編集する", edit_travel_path(@travel.id) %>
+</div>
+
+<div class="comment-wrapper">
+  <p>コメント一覧</p>
+  <% @comments.each do |c| %>
+    <div>
+      <%= c.user.email unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+    </div>
+      <br>
+      <%= link_to "編集する", edit_travel_comment_path(@travel, @comments.first.id) %>
+      <%= button_to "削除する", travel_comment_path(@travel, @comments.first.id), method: :delete %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@travel, @comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= link_to "Tweet一覧に戻る", travels_path %>
+<%= link_to "編集する", edit_travel_path(@travel.id) %>

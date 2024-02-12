@@ -1,0 +1,51 @@
+<%= link_to '東北＆北海道',travels_hokkaido_path %>
+<%= link_to '関東',travels_kanto_path %>
+<%= link_to '北陸＆甲信越',travels_hokuriku_path %>
+<%= link_to '東海',travels_tokai_path %>
+<%= link_to '近畿',travels_kinki_path %>
+<%= link_to '中国',travels_chugoku_path %>
+<%= link_to '四国',travels_shikoku_path %>
+<%= link_to '九州＆沖縄',travels_kyushu_path %>
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+<h3>Tweet一覧</h3>
+<%= link_to "新規投稿へ", new_travel_path %>
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) %>
+<% end %>
+<div class="travels-container">
+  <% @travels.each do |t| %>
+    <div class="travel">
+      <%= link_to t.user.name, user_path(t.user.id) %>
+      <%= t.user.email %>
+      <%= image_tag t.user.image_url, size: "10x10" if t.user.image? %>
+      <%= image_tag t.image_url, size: "125x100" if t.image? %>
+      <%= t.body %>
+    <% if user_signed_in? %>
+       <% if current_user.already_liked?(t) %>
+          <%= button_to travel_like_path(id: t.id, travel_id: t.id), method: :delete do %>
+            <i class="fas fa-heart"></i><%= t.likes.count %>
+          <% end %>
+       <% else %>
+          <%= button_to travel_likes_path(id: t.id, travel_id: t.id), method: :post do %>
+            <i class="far fa-heart"></i><%= t.likes.count %>
+          <% end %>
+       <% end %>
+  <% else %>
+    <i class="far fa-heart"></i><%= t.likes.count %>
+  <% end %>
+      <%= t.created_at %>
+      <%= link_to "詳細へ", travel_path(t.id) %>
+      <% if user_signed_in? && current_user.id == t.user_id %>
+        <%= link_to "編集する", edit_travel_path(t.id) %>
+        <%= button_to "削除する", t, method: :delete %>
+  <% end %> 
+    </div>
+  <% end %>
+</div>
+<div class="container">
+ Hello
+</div>

@@ -1,0 +1,15 @@
+<h1>Japantravel</h1>
+<h3>新規投稿</h3>
+<%= form_for @travel do |f| %>
+  <div class="field">
+   <%= f.label :body,"内容" %>
+   <%= f.text_field :body, :size => 140 %>
+   <%= f.select :category, [["東北＆北海道", "hokkaido"], ["関東", "kanto"], ["北陸＆甲信越", "hokuriku"], ["東海", "tokai"], ["近畿", "kinki"], ["中国", "chugoku"], ["四国", "shikoku"], ["九州＆沖縄", "kyushu"]], include_blank: "どの投稿？" %>
+  </div>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <%= f.submit "投稿する" %>
+<% end %>
+<%= link_to "投稿一覧に戻る", travels_path %>
