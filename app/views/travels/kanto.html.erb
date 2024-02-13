@@ -1,4 +1,24 @@
-<h1>kanto</h1>
+<div class="text-container">
+<h1>関東 Kanto</h1>
+<h2>関東地方（かんとうちほう）は、日本の地域区分（七地方区分）の1つであり、本州の東部に位置している。
+
+その範囲について法律上の明確な定義はないが、一般的には茨城県、栃木県、群馬県、埼玉県、千葉県、東京都、神奈川県の1都6県を指して関東地方と呼ぶ。<br>
+
+首都・東京都を擁する関東地方は日本の政治・経済の中心となっており、日本の総人口の約34.8%（2022年10月1日現在）、GDPの約39.1%（2020年度）が集中している。特に南関東（東京都・神奈川県・埼玉県・千葉県）の1都3県は通勤・通学などで東京との結びつきが大きい。<br>関東地方の1都6県に山梨県を加えて首都圏を構成している。 </h2>
+</div>
+<div class="background-container">
+<%= image_tag'1.jpg', size: "400x500" %>
+<%= image_tag'2.jpg', size: "400x500" %>
+<%= image_tag'3.jpg', size: "400x500" %>
+</div>
 <% @kantos.each do |t| %>
     <p>内容:<%= t.body %></p>
+    <%= image_tag t.image_url, size: "125x100" if t.image? %>
+    <%= link_to t.user.name, user_path(t.user.id) %>
+    <%= t.created_at %>
+    <%= link_to "詳細へ", travel_path(t.id) %>
+    <% if user_signed_in? && current_user.id == t.user_id %>
+      <%= link_to "編集する", edit_travel_path(t.id) %>
+      <%= button_to "削除する", t, method: :delete %>
+<% end %> 
   <% end %>
