@@ -1,0 +1,21 @@
+databases:
+  - name: jeffery_DB
+    databaseName: 「Info内のConnectionsにあるDatabase」を入れる
+    user: jeffery
+    region: singapore
+
+services:
+  - type: web
+    name: jeffery
+    env: ruby
+    region: singapore
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: jeffery_DB
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
