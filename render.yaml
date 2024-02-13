@@ -1,6 +1,6 @@
 databases:
   - name: jeffery_DB
-    databaseName: 「Info内のConnectionsにあるDatabase」を入れる
+    databaseName: jeffery_db
     user: jeffery
     region: singapore
 
