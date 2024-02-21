@@ -1,6 +1,10 @@
-<h1>Japantravel</h1>
-<h3>Tweet詳細</h3>
+<h1>投稿詳細</h1>
 <div class="travel">
+<% if @travel.image? %>
+  <%= link_to @travel.image_url, "data-lightbox": "travel-image" do %>
+    <%= image_tag @travel.image_url, size: "125x100" %>
+  <% end %>
+<% end %>
   <p><%= @travel.body %></p>
   <p><%= @travel.created_at %></p>
   <% if user_signed_in? %>
@@ -43,4 +47,3 @@
 </div>
 
 <%= link_to "Tweet一覧に戻る", travels_path %>
-<%= link_to "編集する", edit_travel_path(@travel.id) %>

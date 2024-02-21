@@ -52,3 +52,7 @@ header li {
 .circle a:link, .circle a:visited {
   color: blue; /* または好みの色 */
 }
+
+.toukou-container a:link, .toukou-container a:visited {
+  color: blue; /* または好みの色 */
+}

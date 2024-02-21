@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     get 'users/sign_out' =>'devise/sessions#destroy'
   end
   resources :users, only: [:show, :destroy] # ユーザーマイページへのルーティング
-  get 'travels/link' => 'travels#link'
   get 'travels/hokkaido' => 'travels#hokkaido'
   get 'travels/kanto' => 'travels#kanto'
   get 'travels/hokuriku' => 'travels#hokuriku'
