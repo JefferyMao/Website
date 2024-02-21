@@ -7,20 +7,156 @@
 }
 
 .background-container {
-  text-align: center;
-  margin-top: 25px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.image-container {
+  text-align: center; /* 使图片和文字居中对齐 */
+}
+
+.image-container p{
+  font-size: 20px;
+  margin-bottom: 2rem;
 }
 
 .background-container img {
-  margin-left: 25px;
-  margin-right: 25px;
+  margin: 0 10px;
 }
 
-.text-container h1 {
-  font-size: 40px;
+.background-container p {
+  margin-top: 10px;
+  color: white;
 }
 
-.text-container h2 {
-  font-size: 14px;
-  color: rgb(112, 109, 106);
+section.info-circles {
+  background-color: rgb(6, 75, 131);
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+
+  .text-container h1 {
+    font-size: 40px;
+    color: white;
+  }
+
+  .text-container h2 {
+    font-size: 14px;
+    color: white;
+  }
+}
+
+body {
+  position: relative;
+
+  img.fixed-image {
+    min-height: 100vh;
+    position: fixed;
+    width: 100%;
+    z-index: -5;
+    bottom: 0;
+    left: 0;
+  }
+  main {
+    .background-img {
+      min-height: 70vh;
+      background-image: url("Tochou.jpg");
+      background-size: cover;
+      background-position: center;
+      transition: all 0.75s ease;
+      position: relative;
+      z-index: 0; // stacking context
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .filter {
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      min-height: 70vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    h2 {
+      color: white;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    section.info-circles {
+      background-color: white;
+      padding: 2rem 1rem;
+
+      h3 {
+        text-align: center;
+        font-size: 2rem;
+      }
+
+      div.circles {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        div.circle {
+          padding: 1rem;
+          flex: 0 1 300px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          img {
+            width: 80%;
+            border-radius: 50%;
+            transition: all 0.1s ease-in;
+            padding: 0.3rem;
+            &:hover {
+              border: 3px solid blueviolet;
+            }
+          }
+        }
+      }
+    }
+    section.empty-container {
+      min-height: 70vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h3 {
+        font-size: 2rem;
+        color: white;
+      }
+    }
+
+    section.google-map {
+      background-color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      h3 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1.25rem;
+        margin: 1rem;
+      }
+
+      iframe {
+        width: 100%;
+        height: 40vh;
+      }
+    }
+  }
+  footer {
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }

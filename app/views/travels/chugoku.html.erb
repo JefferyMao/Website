@@ -1,4 +1,56 @@
-<h1>chugoku</h1>
-<% @chugokus.each do |t| %>
-    <p>内容:<%= t.body %></p>
-  <% end %>
+<%= image_tag("/images/itsukushima.png", alt: "fixed-image", class: "fixed-image") %>
+  <%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+<% end %>
+ 
+ <section class="info-circles">
+ <div class="text-container">
+ <h1>中国地方</h1>
+ <h2>中国地方（ちゅうごくちほう）は、日本の地域の1つで、本州西部に位置する地方。人口最多および最大の都市は広島県広島市。
+ </br>本州西部、岡山・広島・山口・鳥取・島根5県のある地方を指す。
+ </br>「中国」地方という呼称の由来ははっきりしていない。日本神話に、葦原中国（あしはらのなかつくに）または豊葦原中国（とよあしはらのなかつくに）が日本全体の名称として登場している。一説には古代、畿内を中心に令制国を「近国」「中国」「遠国」に区別したとき、この地方のほとんどが「中国」に相当したからだとされている。
+ </h2>
+ </div>
+ </section>
+ 
+ <div class="background-container">
+ <div class="image-container">
+ <%= link_to "/images/kurashiki.png", "data-lightbox": "/images/kurashiki.png" do %>
+   <%= image_tag "/images/kurashiki.png", class: "img", size: "400x500" %>
+ <% end %>
+ <p>岡山県倉敷市</p>
+ </div>
+ <div class="image-container">
+ <%= link_to "/images/itsukushima.png", "data-lightbox": "/images/itsukushima.png" do %>
+  <%= image_tag "/images/itsukushima.png", class: "img", size: "400x500" %>
+ <% end %>
+ <p>広島県厳島</p>
+ </div>
+ <div class="image-container">
+ <%= link_to "/images/akamajinguuu.png", "data-lightbox": "/images/akamajinguu.png" do %>
+  <%= image_tag "/images/akamajinguu.png", class: "img", size: "400x500" %>
+ <% end %>
+ <p>山口県赤間神宮</p>
+ </div>
+ </div>
+ 
+ <div class='comments-container'>
+ <h3>Comments</h3>
+ <%= link_to "新規投稿ページへ", new_travel_path, style: "color: white; font-size: 20px;"   %>
+ <% @chugokus.each do |t| %>
+   <div class="travel">
+    <div class='main-box'>
+     <%= link_to t.image_url, "data-lightbox": t.image_url do %>
+       <%= image_tag t.image_url, class:"img", size: "125x100" if t.image?%>
+     <% end %>
+      <div class="left-container"><%= t.body %></div>
+     <div class="right-container">
+     <%= link_to t.user.name, user_path(t.user.id) %>
+     <%= t.created_at %>
+     <%= link_to "詳細へ", travel_path(t.id) %>
+     <%= link_to "編集する", edit_travel_path(t.id) %>
+     <%= button_to "削除する", t, method: :delete %>
+     </div>
+   </div>
+   </div>
+    <% end %>
+ </div>

@@ -1,3 +1,8 @@
+<%= image_tag("Enoshimaumi.jpg", alt: "fixed-image", class: "fixed-image") %>
+ <%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+<% end %>
+
+<section class="info-circles">
 <div class="text-container">
 <h1>関東 Kanto</h1>
 <h2>関東地方（かんとうちほう）は、日本の地域区分（七地方区分）の1つであり、本州の東部に位置している。
@@ -6,19 +11,43 @@
 
 首都・東京都を擁する関東地方は日本の政治・経済の中心となっており、日本の総人口の約34.8%（2022年10月1日現在）、GDPの約39.1%（2020年度）が集中している。特に南関東（東京都・神奈川県・埼玉県・千葉県）の1都3県は通勤・通学などで東京との結びつきが大きい。<br>関東地方の1都6県に山梨県を加えて首都圏を構成している。 </h2>
 </div>
+</section>
+
 <div class="background-container">
-<%= image_tag'1.jpg', size: "400x500" %>
-<%= image_tag'2.jpg', size: "400x500" %>
-<%= image_tag'3.jpg', size: "400x500" %>
+<div class="image-container">
+<%= link_to "/images/Tochou.jpg", "data-lightbox": "/images/Tochou.jpg" do %>
+  <%= image_tag "/images/Tochou.jpg", class: "img", size: "400x500" %>
+<% end %>
+<p>東京都庁</p>
 </div>
+<div class="image-container">
+<%= image_tag'Harunayama.jpg', size: "400x500" %>
+<p>群馬県榛名山</p>
+</div>
+<div class="image-container">
+<%= image_tag'Enoshimaumi.jpg', size: "400x500" %>
+<p>神奈川県江の島</p>
+</div>
+</div>
+
+<div class='comments-container'>
+<h3>Comments</h3>
+<%= link_to "新規投稿ページへ", new_travel_path, style: "color: white; font-size: 20px;"   %>
 <% @kantos.each do |t| %>
-    <p>内容:<%= t.body %></p>
-    <%= image_tag t.image_url, size: "125x100" if t.image? %>
+  <div class="travel">
+   <div class='main-box'>
+    <%= link_to t.image_url, "data-lightbox": t.image_url do %>
+      <%= image_tag t.image_url, class:"img", size: "125x100" if t.image?%>
+    <% end %>
+     <div class="left-container"><%= t.body %></div>
+    <div class="right-container">
     <%= link_to t.user.name, user_path(t.user.id) %>
     <%= t.created_at %>
     <%= link_to "詳細へ", travel_path(t.id) %>
-    <% if user_signed_in? && current_user.id == t.user_id %>
-      <%= link_to "編集する", edit_travel_path(t.id) %>
-      <%= button_to "削除する", t, method: :delete %>
-<% end %> 
-  <% end %>
+    <%= link_to "編集する", edit_travel_path(t.id) %>
+    <%= button_to "削除する", t, method: :delete %>
+    </div>
+  </div>
+  </div>
+   <% end %>
+</div>

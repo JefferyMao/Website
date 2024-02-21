@@ -1,4 +1,58 @@
-<h1>hokuriku</h1>
-<% @hokurikus.each do |t| %>
-    <p>内容:<%= t.body %></p>
-  <% end %>
+<%= image_tag("/images/toyama.png", alt: "fixed-image", class: "fixed-image") %>
+  <%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+ <% end %>
+ 
+ <section class="info-circles">
+ <div class="text-container">
+ <h1>北陸・甲信越</h1>
+ <h2>北陸地方（ほくりくちほう）は、本州中央部の日本海に面した地域を指す名称である。畿内から見て北方にある五畿七道の北陸道に由来し、中世以前では、この地域を北国（ほっこく）と称していた。
+
+ 現代においては北陸道と同じ範囲である新潟県、富山県、石川県、福井県の4県である。
+ </br>甲信越地方（こうしんえつちほう）は、山梨県、長野県、新潟県の3県の総称。それぞれの令制国名である「甲斐」「信濃」「越後」の頭文字をとった名称。単体で使用されることは稀で、関東地方と合わせた10都県に対して関東甲信越地方との呼称で用いられることが多い。
+ </h2>
+ </div>
+ </section>
+ 
+ <div class="background-container">
+ <div class="image-container">
+ <%= link_to "/images/toyama.png", "data-lightbox": "/images/toyama.png" do %>
+   <%= image_tag "/images/toyama.png", class: "img", size: "400x500" %>
+ <% end %>
+ <p>富山</p>
+ </div>
+ <div class="image-container">
+ <%= link_to "/images/shousenkyou.png", "data-lightbox": "/images/shousenkyou.png" do %>
+  <%= image_tag "/images/shousenkyou.png", class: "img", size: "400x500" %>
+ <% end %>
+ <p>山梨県昇仙峡</p>
+ </div>
+ <div class="image-container">
+ <%= link_to "/images/kanazawa.png", "data-lightbox": "/images/kanazawa.png" do %>
+  <%= image_tag "/images/kanazawa.png", class: "img", size: "400x500" %>
+ <% end %>
+ <p>金沢</p>
+ </div>
+ </div>
+ 
+ <div class='comments-container'>
+ <h3>Comments</h3>
+ <%= link_to "新規投稿ページへ", new_travel_path, style: "color: white; font-size: 20px;"   %>
+ <% @hokurikus.each do |t| %>
+   <div class="travel">
+    <div class='main-box'>
+     <%= link_to t.image_url, "data-lightbox": t.image_url do %>
+       <%= image_tag t.image_url, class:"img", size: "125x100" if t.image?%>
+     <% end %>
+      <div class="left-container"><%= t.body %></div>
+     <div class="right-container">
+     <%= link_to t.user.name, user_path(t.user.id) %>
+     <%= t.created_at %>
+     <%= link_to "詳細へ", travel_path(t.id) %>
+     <%= link_to "編集する", edit_travel_path(t.id) %>
+     <%= button_to "削除する", t, method: :delete %>
+     </div>
+   </div>
+   </div>
+    <% end %>
+ </div>
+ 

@@ -1,26 +1,82 @@
-<%= link_to '東北＆北海道',travels_hokkaido_path %>
-<%= link_to '関東',travels_kanto_path %>
-<%= link_to '北陸＆甲信越',travels_hokuriku_path %>
-<%= link_to '東海',travels_tokai_path %>
-<%= link_to '近畿',travels_kinki_path %>
-<%= link_to '中国',travels_chugoku_path %>
-<%= link_to '四国',travels_shikoku_path %>
-<%= link_to '九州＆沖縄',travels_kyushu_path %>
-<h3>投稿を検索</h3>
+<%= image_tag("/images/gotenbafukasawa.png", alt: "fixed-image", class: "fixed-image") %>
  <%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
    <%= text_field_tag :search %>
    <%= submit_tag '検索する'  %>
 <% end %>
-<h3>Tweet一覧</h3>
-<%= link_to "新規投稿へ", new_travel_path %>
-<% if user_signed_in? %>
-  <%= link_to "マイページへ", user_path(current_user.id) %>
-<% end %>
+
+<main>
+<section class="background-img">
+ <div class="filter"></div>
+ <h2>あなたの旅行体験を<br />シェアしよう！</h2>
+</section>
+
+<section class="info-circles">
+<h3>地域</h3>
+<div class="circles">
+  <div class="circle">
+    <%= image_tag("/images/matsushima.png", alt: "松島") %>
+    <p><%= link_to '東北＆北海道',travels_hokkaido_path %></p>
+  </div>
+  <div class="circle">
+    <%= image_tag("Tochou.jpg", alt: "東京都庁") %>
+    <p><%= link_to '関東',travels_kanto_path %></p>
+  </div>
+  <div class="circle">
+    <%= image_tag("/images/toyama.png", alt: "富山") %>
+    <p><%= link_to '北陸＆甲信越',travels_hokuriku_path %></p>
+  </div>
+    <div class="circle">
+    <%= image_tag("/images/nagoyajou.png", alt: "御殿場市") %>
+  <p><%= link_to '東海',travels_tokai_path %></p>
+  </div>
+    <div class="circle">
+    <%= image_tag("/images/maibara.png", alt: "米原") %>
+    <p><%= link_to '近畿',travels_kinki_path %></p>
+  </div>
+    <div class="circle">
+    <%= image_tag("/images/itsukushima.png", alt: "厳島") %>
+    <p><%= link_to '中国',travels_chugoku_path %></p>
+  </div>
+    <div class="circle">
+    <%= image_tag("/images/shikanoshima.png", alt: "志賀島") %>
+  <p><%= link_to '四国',travels_shikoku_path %></p>
+  </div>
+    <div class="circle">
+    <%= image_tag("/images/asosannakadake.png", alt: "中岳") %>
+  <p><%= link_to '九州＆沖縄',travels_kyushu_path %></p>
+  </div>
+ </div>
+</section>
+
+<section class="empty-container">
+<h2>今日から旅行を始めよう！</h2>
+</section>
+
+<section class="google-map">
+<h3>日本地理</h3>
+<p>
+日本は、島国すなわち領土がすべて島から成る国である。
+
+日本の領土は、日本列島（本州・北海道・九州・四国などが主たる島）を中心に、南に延びる伊豆・小笠原諸島、南西に延びる南西諸島（沖縄本島が最大の島）、そして北東に位置する北方領土と、14,125の島から成っている。その中で、日本列島は広いところで300km程度の幅があり、長さは3500km程ある。
+
+地理学上の分類ではないが、国土交通省は、日本を構成する14,125の島に「本土」と「離島」の2つの区分けを設けている。すなわち、北海道・本州・四国・九州・沖縄本島の5島を「本土」、これら5島を除く14,120島を「離島」としている。
+</p>
+<iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5300755.760441594!2d137.10323600911116!3d35.18148688884259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34674e0fd77f192f%3A0xf54275d47c665244!2sJapan!5e0!3m2!1sen!2sus!4v1664253921541!5m2!1sen!2sus"
+  style="border: 0"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+></iframe>
+ </section>
+</main>
+
+<section class="toukou-container">
 <div class="travels-container">
+<h3>投稿一覧</h3>
   <% @travels.each do |t| %>
     <div class="travel">
       <%= link_to t.user.name, user_path(t.user.id) %>
-      <%= t.user.email %>
       <%= image_tag t.user.image_url, size: "10x10" if t.user.image? %>
       <%= image_tag t.image_url, size: "125x100" if t.image? %>
       <%= t.body %>
@@ -42,10 +98,9 @@
       <% if user_signed_in? && current_user.id == t.user_id %>
         <%= link_to "編集する", edit_travel_path(t.id) %>
         <%= button_to "削除する", t, method: :delete %>
+        <%= link_to "新規投稿へ", new_travel_path %>
   <% end %> 
     </div>
+    </section>
   <% end %>
-</div>
-<div class="container">
- Hello
 </div>

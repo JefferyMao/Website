@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :users, only: [:show] # ユーザーマイページへのルーティング
+  devise_scope :user do
+    get 'users/sign_out' =>'devise/sessions#destroy'
+  end
+  resources :users, only: [:show, :destroy] # ユーザーマイページへのルーティング
   get 'travels/link' => 'travels#link'
   get 'travels/hokkaido' => 'travels#hokkaido'
   get 'travels/kanto' => 'travels#kanto'

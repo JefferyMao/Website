@@ -12,7 +12,7 @@ class TravelsController < ApplicationController
 
     def link
     end
-
+    
     def hokkaido
      @hokkaidos = Travel.where(category:"hokkaido") #ここがポイント！categoryのバリューがdogの投稿を取得！
     end

@@ -1,5 +1,54 @@
-<h1>kinki</h1>
-<% @kinkis.each do |t| %>
-    <p>内容:<%= t.body %></p>
-    <%= image_tag t.image_url, size: "125x100" if t.image? %>
-  <% end %>
+<%= image_tag("/images/maibara.png", alt: "fixed-image", class: "fixed-image") %>
+ <%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+<% end %>
+ 
+ <section class="info-circles">
+ <div class="text-container">
+ <h1>近畿</h1>
+ <h2>近畿地方（きんきちほう）は、本州中西部に位置する日本の地域である。かつての令制国における畿内（五畿内、五畿。「畿」は「都」の意）とその近隣地域から構成される。難波宮、平城宮、平安宮など古代より日本の都が置かれた地である。日本の中枢が関東地方に移った現在も日本第二の都市圏である京阪神大都市圏（近畿大都市圏）を擁する。最大都市は大阪府大阪市。<br/>大阪府・京都府・兵庫県・奈良県・和歌山県・滋賀県・三重県の2府5県を指すことが多い。
+ </h2>
+ </div>
+ </section>
+ 
+ <div class="background-container">
+ <div class="image-container">
+ <%= link_to "/images/maibara.png", "data-lightbox": "/images/maibara.png" do %>
+   <%= image_tag "/images/maibara.png", class: "img", size: "400x500" %>
+ <% end %>
+ <p>琵琶湖（米原から）</p>
+ </div>
+ <div class="image-container">
+ <%= link_to "/images/koufukuji.png", "data-lightbox": "/images/koufukuji.png" do %>
+  <%= image_tag "/images/koufukuji.png", class: "img", size: "400x500" %>
+ <% end %>
+ <p>奈良県興福寺</p>
+ </div>
+ <div class="image-container">
+ <%= link_to "/images/kyoutoeki.png", "data-lightbox": "/images/kyoutoeki.png" do %>
+  <%= image_tag "/images/kyoutoeki.png", class: "img", size: "400x500" %>
+ <% end %>
+ <p>京都駅</p>
+ </div>
+ </div>
+ 
+ <div class='comments-container'>
+ <h3>Comments</h3>
+ <%= link_to "新規投稿ページへ", new_travel_path, style: "color: white; font-size: 20px;"   %>
+ <% @kinkis.each do |t| %>
+   <div class="travel">
+    <div class='main-box'>
+     <%= link_to t.image_url, "data-lightbox": t.image_url do %>
+       <%= image_tag t.image_url, class:"img", size: "125x100" if t.image?%>
+     <% end %>
+      <div class="left-container"><%= t.body %></div>
+     <div class="right-container">
+     <%= link_to t.user.name, user_path(t.user.id) %>
+     <%= t.created_at %>
+     <%= link_to "詳細へ", travel_path(t.id) %>
+     <%= link_to "編集する", edit_travel_path(t.id) %>
+     <%= button_to "削除する", t, method: :delete %>
+     </div>
+   </div>
+   </div>
+    <% end %>
+ </div>
