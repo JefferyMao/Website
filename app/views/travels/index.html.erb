@@ -1,4 +1,4 @@
-<%= image_tag("/images/gotenbafukasawa.png", alt: "fixed-image", class: "fixed-image") %>
+<%= image_tag("/images/gotenbafukasawa.jpg", alt: "fixed-image", class: "fixed-image") %>
  <%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
    <%= text_field_tag :search %>
    <%= submit_tag '検索する'  %>
@@ -14,35 +14,35 @@
 <h3>地域</h3>
 <div class="circles">
   <div class="circle">
-    <%= image_tag("/images/matsushima.png", alt: "松島") %>
+    <%= image_tag("/images/matsushima.jpg", alt: "松島") %>
     <p><%= link_to '東北＆北海道',travels_hokkaido_path %></p>
   </div>
   <div class="circle">
-    <%= image_tag("Tochou.jpg", alt: "東京都庁") %>
+    <%= image_tag("/images/Tochou.jpg", alt: "東京都庁") %>
     <p><%= link_to '関東',travels_kanto_path %></p>
   </div>
   <div class="circle">
-    <%= image_tag("/images/toyama.png", alt: "富山") %>
+    <%= image_tag("/images/toyama.jpg", alt: "富山") %>
     <p><%= link_to '北陸＆甲信越',travels_hokuriku_path %></p>
   </div>
     <div class="circle">
-    <%= image_tag("/images/nagoyajou.png", alt: "御殿場市") %>
+    <%= image_tag("/images/nagoyajou.jpg", alt: "御殿場市") %>
   <p><%= link_to '東海',travels_tokai_path %></p>
   </div>
     <div class="circle">
-    <%= image_tag("/images/maibara.png", alt: "米原") %>
+    <%= image_tag("/images/maibara.jpg", alt: "米原") %>
     <p><%= link_to '近畿',travels_kinki_path %></p>
   </div>
     <div class="circle">
-    <%= image_tag("/images/itsukushima.png", alt: "厳島") %>
+    <%= image_tag("/images/itsukushima.jpg", alt: "厳島") %>
     <p><%= link_to '中国',travels_chugoku_path %></p>
   </div>
     <div class="circle">
-    <%= image_tag("/images/shikanoshima.png", alt: "志賀島") %>
+    <%= image_tag("/images/TosashimizuAshizuriCape.jpg", alt: "足摺岬") %>
   <p><%= link_to '四国',travels_shikoku_path %></p>
   </div>
     <div class="circle">
-    <%= image_tag("/images/asosannakadake.png", alt: "中岳") %>
+    <%= image_tag("/images/asosannakadake.jpg", alt: "中岳") %>
   <p><%= link_to '九州＆沖縄',travels_kyushu_path %></p>
   </div>
  </div>

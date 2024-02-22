@@ -1,4 +1,4 @@
-<%= image_tag("Enoshimaumi.jpg", alt: "fixed-image", class: "fixed-image") %>
+<%= image_tag("/images/Enoshimaumi.jpg", alt: "fixed-image", class: "fixed-image") %>
  <%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
 <% end %>
 
@@ -21,11 +21,15 @@
 <p>東京都庁</p>
 </div>
 <div class="image-container">
-<%= image_tag'Harunayama.jpg', size: "400x500" %>
+<%= link_to "/images/Harunayama.jpg", "data-lightbox": "/images/Harunayama.jpg" do %>
+  <%= image_tag "/images/Harunayama.jpg", class: "img", size: "400x500" %>
+<% end %>
 <p>群馬県榛名山</p>
 </div>
 <div class="image-container">
-<%= image_tag'Enoshimaumi.jpg', size: "400x500" %>
+<%= link_to "/images/Enoshimaumi.jpg", "data-lightbox": "/images/Enoshimaumi.jpg" do %>
+  <%= image_tag "/images/Enoshimaumi.jpg", class: "img", size: "400x500" %>
+<% end %>
 <p>神奈川県江の島</p>
 </div>
 </div>
